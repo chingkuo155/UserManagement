@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用戶管理系統</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>用戶管理系統</h1>
+
+    <div class="container">
+        <div class="container-left">
+            <h2>用戶列表</h2>
+            <button id="toggleUsersBtn">顯示/隱藏所有用戶</button>
+            <div id="allUsersContainer">
+                <ul id="allUsers"></ul>
+            </div>
+
+            <h2>新增用戶</h2>
+            <form id="userForm">
+                <input type="email" id="email" placeholder="Email" required><br>
+                <input type="text" id="username" placeholder="Username" required><br>
+                <input type="password" id="password" placeholder="Password" required><br>
+                <input type="text" id="first_name" placeholder="First Name" required><br>
+                <input type="text" id="last_name" placeholder="Last Name" required><br>
+                <input type="text" id="gender" placeholder="Gender" required><br>
+                <input type="text" id="country" placeholder="Country" required><br>
+                <label>
+                    <input type="checkbox" id="isActive"> Is Active
+                </label><br>
+                <input type="submit" value="新增用戶">
+            </form>
+        </div>
+
+        <div class="container-right">
+            <h2>更新用戶</h2>
+            <form id="updateForm">
+                <input type="email" id="updateEmail" placeholder="Email" required><br>
+                <input type="text" id="updateUsername" placeholder="New Username"><br>
+                <input type="password" id="updatePassword" placeholder="New Password"><br>
+                <input type="text" id="updateFirstName" placeholder="New First Name"><br>
+                <input type="text" id="updateLastName" placeholder="New Last Name"><br>
+                <input type="text" id="updateGender" placeholder="New Gender"><br>
+                <input type="text" id="updateCountry" placeholder="New Country"><br>
+                <label>
+                    <input type="checkbox" id="updateIsActive"> Is Active
+                </label><br>
+                <input type="submit" value="更新用戶">
+            </form>
+
+            <h2>刪除用戶</h2>
+            <form id="deleteForm">
+                <input type="number" id="deleteId" placeholder="User ID" required><br>
+                <input type="submit" value="刪除用戶">
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/scripts.js"></script>
+</body>
+</html>
