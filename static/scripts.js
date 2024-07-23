@@ -1,4 +1,10 @@
 // /static/scripts.js
+// Helper function to safely log messages
+function safeLog(message, data) {
+    if (console && console.log) {
+        console.log(message, data);
+    }
+}
 
 function loadAllUsers() {
     $.ajax({
@@ -22,8 +28,8 @@ function loadAllUsers() {
                 userList.append(li);
             });
         },
-        error: function() {
-            console.log("Error loading users");
+        error: function(jqXHR, textStatus, errorThrown) {
+            safeLog("Error loading users:", textStatus);
         }
     });
 }
@@ -39,8 +45,32 @@ function createUser(userData) {
             $("#userForm")[0].reset();
             loadAllUsers();
         },
-        error: function() {
+        error: function(jqXHR, textStatus, errorThrown) {
+            safeLog("Error creating user:", textStatus);
             alert("Error creating user");
+        }
+    });
+}
+
+function findUser(email) {
+    safeLog("Finding user with email:", email);  // Correct console.log
+    $.ajax({
+        url: "/users/email/" + encodeURIComponent(email),
+        method: "GET",
+        success: function(user) {
+            safeLog("User found:", user);  // Correct console.log
+            $("#updateEmail").val(user.email);
+            $("#updateUsername").val(user.username);
+            $("#updateFirstName").val(user.first_name);
+            $("#updateLastName").val(user.last_name);
+            $("#updateGender").val(user.gender);
+            $("#updateCountry").val(user.country);
+            $("#updateIsActive").prop("checked", user.isActive);
+            $("#updateForm").show();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            safeLog("Error finding user:", textStatus);  // Correct console.log
+            alert("User not found or an error occurred: " + textStatus);
         }
     });
 }
@@ -54,9 +84,11 @@ function updateUser(userData) {
         success: function(res) {
             alert("User updated successfully!");
             $("#updateForm")[0].reset();
+            $("#updateForm").hide();
             loadAllUsers();
         },
-        error: function() {
+        error: function(jqXHR, textStatus, errorThrown) {
+            safeLog("Error updating user:", textStatus);
             alert("Error updating user");
         }
     });
@@ -71,7 +103,8 @@ function deleteUser(userId) {
             $("#deleteForm")[0].reset();
             loadAllUsers();
         },
-        error: function() {
+        error: function(jqXHR, textStatus, errorThrown) {
+            safeLog("Error deleting user:", textStatus);
             alert("Error deleting user");
         }
     });
@@ -99,8 +132,16 @@ $(document).ready(function() {
         createUser(userData);
     });
 
+    $("#findUserForm").submit(function(e) {
+        e.preventDefault();
+        safeLog("Find user form submitted");  // Correct console.log
+        var email = $("#findEmail").val();
+        findUser(email);
+    });
+
     $("#updateForm").submit(function(e) {
         e.preventDefault();
+        safeLog("Update form submitted");  // Correct console.log
         var userData = {
             email: $("#updateEmail").val(),
             username: $("#updateUsername").val(),
@@ -120,3 +161,15 @@ $(document).ready(function() {
         deleteUser(userId);
     });
 });
+
+// Function to check if jQuery is loaded
+function checkJQuery() {
+    if (typeof jQuery == 'undefined') {
+        safeLog("jQuery is not loaded!");
+    } else {
+        safeLog("jQuery is loaded, version: " + jQuery.fn.jquery);
+    }
+}
+
+// Call this function when the page loads
+$(document).ready(checkJQuery);

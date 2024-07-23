@@ -35,8 +35,12 @@
 
         <div class="container-right">
             <h2>更新用戶</h2>
-            <form id="updateForm">
-                <input type="email" id="updateEmail" placeholder="Email" required><br>
+            <form id="findUserForm">
+                <input type="email" id="findEmail" placeholder="輸入用戶Email" required><br>
+                <input type="submit" value="查找用戶">
+            </form>
+            <form id="updateForm" style="display: none;">
+                <input type="email" id="updateEmail" placeholder="Email" readonly><br>
                 <input type="text" id="updateUsername" placeholder="New Username"><br>
                 <input type="password" id="updatePassword" placeholder="New Password"><br>
                 <input type="text" id="updateFirstName" placeholder="New First Name"><br>
