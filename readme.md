@@ -100,9 +100,3 @@ The interface is responsive and provides immediate feedback on user actions.
 5. Create a pull request with a detailed description of your changes
 
 Please ensure that your code follows the existing style conventions and includes appropriate comments.
-
-## 10. License
-[Include your chosen license here]
-
-## 11. Contact
-[Your contact information or way for users to reach out with questions]
