@@ -3,7 +3,6 @@
 from sqlalchemy import Boolean, Column, Integer, String
 from database import Base, engine
 
-# Task 2 - Code Here
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, index=True)
@@ -15,5 +14,5 @@ class User(Base):
     country = Column(String)
     isActive = Column(Boolean)
     hashed_password = Column(String)
-# ------------------------------
+
 Base.metadata.create_all(engine)

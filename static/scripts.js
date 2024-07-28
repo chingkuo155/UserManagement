@@ -1,5 +1,5 @@
 // /static/scripts.js
-// Helper function to safely log messages
+
 function safeLog(message, data) {
     if (console && console.log) {
         console.log(message, data);
@@ -53,12 +53,12 @@ function createUser(userData) {
 }
 
 function findUser(email) {
-    safeLog("Finding user with email:", email);  // Correct console.log
+    safeLog("Finding user with email:", email);  
     $.ajax({
         url: "/users/email/" + encodeURIComponent(email),
         method: "GET",
         success: function(user) {
-            safeLog("User found:", user);  // Correct console.log
+            safeLog("User found:", user);  
             $("#updateEmail").val(user.email);
             $("#updateUsername").val(user.username);
             $("#updateFirstName").val(user.first_name);
@@ -69,7 +69,7 @@ function findUser(email) {
             $("#updateForm").show();
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            safeLog("Error finding user:", textStatus);  // Correct console.log
+            safeLog("Error finding user:", textStatus);  
             alert("User not found or an error occurred: " + textStatus);
         }
     });

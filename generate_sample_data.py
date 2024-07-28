@@ -8,10 +8,8 @@ import models
 import schemas
 import crud
 
-# 初始化Faker
 fake = Faker()
 
-# 創建數據庫會話
 db = SessionLocal()
 
 def generate_random_user():
